@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "891270224734",
+    "firebase_url": "https://utcuates.firebaseio.com",
+    "project_id": "utcuates",
+    "storage_bucket": "utcuates.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:891270224734:android:6a2b7c070e63947e",
+        "android_client_info": {
+          "package_name": "jvr.utcuates"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891270224734-h2kldgrrqhj3sl72n267bs121qb6dhv1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "jvr.utcuates",
+            "certificate_hash": "61150d09bdea3f82c0f6fc6a618da053fa882ce8"
+          }
+        },
+        {
+          "client_id": "891270224734-tc61vo2itg9t9ueo5s7ui207rn0bhf1v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuZNEgr6r4jCuQ-4ua_jnjJTPDEq0Q2Bw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891270224734-tc61vo2itg9t9ueo5s7ui207rn0bhf1v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
