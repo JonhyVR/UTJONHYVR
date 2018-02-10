@@ -38,9 +38,9 @@ import java.util.ArrayList
 class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
     private var mMap: GoogleMap? = null
-    internal var mGoogleApiClient: GoogleApiClient
-    internal var mLastLocation: Location
-    internal var mLocationRequest: LocationRequest
+    internal lateinit var mGoogleApiClient: GoogleApiClient
+    internal lateinit var mLastLocation: Location
+    internal lateinit var mLocationRequest: LocationRequest
 
     private var mBuscar: Button? = null
     private var mLogout: Button? = null
@@ -176,7 +176,7 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
 
     override fun onStop() {
         super.onStop()
-        if ((!isLoggingOut)!!) {
+        if ((!isLoggingOut!!)!!) {
             disconnectDriver()
         }
     }

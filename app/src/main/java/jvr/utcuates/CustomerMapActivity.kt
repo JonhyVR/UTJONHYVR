@@ -29,9 +29,9 @@ import com.google.firebase.database.FirebaseDatabase
 class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     private var mMap: GoogleMap? = null
-    internal var mGoogleApiClient: GoogleApiClient
-    internal var mLastLocation: Location
-    internal var mLocationRequest: LocationRequest
+    internal lateinit var mGoogleApiClient: GoogleApiClient
+    internal lateinit var mLastLocation: Location
+    internal lateinit var mLocationRequest: LocationRequest
 
     private var mLogout: Button? = null
     private var mRequest: Button? = null
@@ -156,7 +156,7 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
     override fun onStop() {
 
         super.onStop()
-        if ((!isLoggingOut)!!) {
+        if ((!isLoggingOut!!)!!) {
             disconnectDriver()
         }
     }
