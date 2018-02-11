@@ -5,18 +5,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="jvr.utcuates.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_weight="0.63"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="NOMBRE está diseñada para los estudiantes de la Universidad Tecnológica Metropolitana y puedan contar con una opción más de transporte, está pensada por estudiantes, para el servicio y beneficio de los estudiantes."
+            android:textColor="#fff"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
     <Button
+        android:id="@+id/driver"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Conductor"
-        android:id="@+id/driver"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Usuario"
-        android:id="@+id/customer"/>
+        android:text="Conductor" />
 
+    <Button
+        android:id="@+id/customer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario" />
 </LinearLayout>
