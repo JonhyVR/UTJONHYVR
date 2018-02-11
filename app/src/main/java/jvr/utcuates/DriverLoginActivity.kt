@@ -15,9 +15,12 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import jvr.utcuates.Base.BaseLogin
 
 
-class DriverLoginActivity : AppCompatActivity() {
+class DriverLoginActivity : AppCompatActivity(),BaseLogin {
+
+
     private var mEmail: EditText? = null
     private var mPassword: EditText? = null
     private var mLogin: Button? = null
@@ -47,7 +50,26 @@ class DriverLoginActivity : AppCompatActivity() {
         mLogin = findViewById(R.id.login) as Button
         mRegistration = findViewById(R.id.registration) as Button
 
+        registrar()
+        login()
+
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        mAuth!!.addAuthStateListener(firebaseAuthListener!!)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mAuth!!.removeAuthStateListener(firebaseAuthListener!!)
+    }
+
+    override fun registrar() {
         mRegistration!!.setOnClickListener {
+            if (mEmail!!.text.toString().length < 8 || mPassword!!.text.toString().length < 5  ) return@setOnClickListener;
+
             val email = mEmail!!.text.toString()
             val password = mPassword!!.text.toString()
             mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@DriverLoginActivity) { task ->
@@ -61,6 +83,9 @@ class DriverLoginActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun login() {
         mLogin!!.setOnClickListener {
             val email = mEmail!!.text.toString()
             val password = mPassword!!.text.toString()
@@ -70,16 +95,5 @@ class DriverLoginActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-
-
-    override fun onStart() {
-        super.onStart()
-        mAuth!!.addAuthStateListener(firebaseAuthListener!!)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        mAuth!!.removeAuthStateListener(firebaseAuthListener!!)
     }
 }
