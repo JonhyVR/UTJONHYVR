@@ -3,6 +3,7 @@ package jvr.utcuates
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -28,6 +29,11 @@ class DriverLoginActivity : AppCompatActivity(),BaseLogin {
 
     private var mAuth: FirebaseAuth? = null
     private var firebaseAuthListener: FirebaseAuth.AuthStateListener? = null
+
+     //private var db:FirebaseDatabase = FirebaseDatabase.getInstance();
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_login)
@@ -53,6 +59,7 @@ class DriverLoginActivity : AppCompatActivity(),BaseLogin {
         registrar()
         login()
 
+
     }
 
 
@@ -70,8 +77,9 @@ class DriverLoginActivity : AppCompatActivity(),BaseLogin {
         mRegistration!!.setOnClickListener {
             if (mEmail!!.text.toString().length < 8 || mPassword!!.text.toString().length < 5  ) return@setOnClickListener;
 
-            val email = mEmail!!.text.toString()
+            val email = mEmail!!.text.toString() +  "@utmetropolitana.edu.mx"
             val password = mPassword!!.text.toString()
+
             mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@DriverLoginActivity) { task ->
                 if (!task.isSuccessful) {
                     Toast.makeText(this@DriverLoginActivity, "Error", Toast.LENGTH_SHORT).show()
@@ -87,7 +95,7 @@ class DriverLoginActivity : AppCompatActivity(),BaseLogin {
 
     override fun login() {
         mLogin!!.setOnClickListener {
-            val email = mEmail!!.text.toString()
+            val email = mEmail!!.text.toString() +  "@utmetropolitana.edu.mx"
             val password = mPassword!!.text.toString()
             mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@DriverLoginActivity) { task ->
                 if (!task.isSuccessful) {
@@ -96,4 +104,6 @@ class DriverLoginActivity : AppCompatActivity(),BaseLogin {
             }
         }
     }
+
+
 }

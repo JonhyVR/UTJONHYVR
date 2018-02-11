@@ -3,6 +3,7 @@ package jvr.utcuates
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -16,6 +17,11 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import jvr.utcuates.Base.BaseLogin
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.ValueEventListener
+
+
 
 class CustomerLoginActivity : AppCompatActivity(),BaseLogin {
 
@@ -51,6 +57,27 @@ class CustomerLoginActivity : AppCompatActivity(),BaseLogin {
 
         registrar()
         login()
+
+
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("customerRequest")
+
+        Log.e("dssad",myRef.key)
+
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                val value = dataSnapshot
+                Log.e("sus", "Value is: " + value!!.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Failed to read value
+                Log.e("warning", "Failed to read value.", error.toException())
+            }
+        })
 
     }
 
