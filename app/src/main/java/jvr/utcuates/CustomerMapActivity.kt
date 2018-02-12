@@ -15,7 +15,6 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -31,6 +30,7 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
     internal lateinit var mLastLocation: Location
     internal lateinit var mLocationRequest: LocationRequest
 
+    //private var mPrueba: Button? = null
     private var mLogout: Button? = null
     private var mRequest: Button? = null
 
@@ -52,7 +52,8 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
         } else {
             mapFragment.getMapAsync(this)
         }
-
+        var mPrueba: Button? = null
+        mPrueba = findViewById<View>(R.id.Prueba) as Button
         mLogout = findViewById<View>(R.id.logout) as Button
         mRequest = findViewById<View>(R.id.request) as Button
         mLogout!!.setOnClickListener(View.OnClickListener {
@@ -79,6 +80,12 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
            // mRequest!!.text = "Buscando conductor...."
         }
         //if ()
+        mPrueba!!.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@CustomerMapActivity, Coordenadas::class.java)
+            startActivity(intent)
+            finish()
+            return@OnClickListener
+        })
     }
 
 
@@ -107,8 +114,8 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
 
             val latLng = LatLng(location.latitude, location.longitude)
 
-            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
+            //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
         }
     }
 
