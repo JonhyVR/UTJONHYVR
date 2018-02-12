@@ -29,6 +29,11 @@ import java.util.*
 
 class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
+
+
+
+    //private FirebaseAuth firebaseAuth;
+    //private firebaseAuth.AuthstateListener authstateListener;
     private var mMap: GoogleMap? = null
     internal lateinit var mGoogleApiClient: GoogleApiClient
     internal lateinit var mLastLocation: Location
@@ -61,6 +66,7 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
         mBuscar!!.setOnClickListener {
             val UTM = LatLng(20.938848, -89.617366)
             getRouteToMarker(UTM)
+
         }
 
 
@@ -112,19 +118,29 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
             mLastLocation = location
 
             val latLng = LatLng(location.latitude, location.longitude)
-
+            //val Usuarios =  LatLng(location.latitude, location.longitude)
             //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))  Cámara a Ubnicación
             //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))     Zoom frecuente y molesto
 
+
+            /*val userId2 = FirebaseAuth.getInstance().currentUser!!.uid
+            val ref2 = FirebaseDatabase.getInstance().getReference("customerRequest")
+            val geoFire2 = GeoFire(ref2)
+            geoFire2.setLocation(userId2, GeoLocation(mLastLocation.latitude, mLastLocation.longitude))
+            geoFire2.setLocation(userId2, GeoLocation(location.latitude, location.longitude))
+            mMap!!.addMarker(MarkerOptions().position(Usuarios).title("Usuario"))
+*/
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
             val ref = FirebaseDatabase.getInstance().getReference("driversAvailable")
-
             val geoFire = GeoFire(ref)
-            geoFire.setLocation(userId, GeoLocation(location.latitude, location.longitude))
+
+
+            geoFire.setLocation(userId, GeoLocation(location.latitude, location.longitude) )
         }
 
         val UTM = LatLng(20.938848, -89.617366)
         mMap!!.addMarker(MarkerOptions().position(UTM).title("UTM"))
+
     }
 
     override fun onConnected(bundle: Bundle?) {

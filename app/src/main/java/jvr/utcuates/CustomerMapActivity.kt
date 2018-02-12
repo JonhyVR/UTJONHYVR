@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentActivity
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.ConnectionResult
@@ -23,7 +22,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -78,9 +76,9 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
 
             pickupLocation = LatLng(mLastLocation.latitude, mLastLocation.longitude)
             mMap!!.addMarker(MarkerOptions().position(pickupLocation!!).title("Alumno Aquí"))
-
-            mRequest!!.text = "Buscando conductor...."
+           // mRequest!!.text = "Buscando conductor...."
         }
+        //if ()
     }
 
 

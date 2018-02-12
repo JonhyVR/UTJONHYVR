@@ -15,11 +15,12 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Llamar UTCUATE"
         android:id="@+id/request"
-        android:layout_gravity="bottom"/>
+        android:layout_width="159dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:text="Llamar UTCUATE" />
 </FrameLayout>
 
