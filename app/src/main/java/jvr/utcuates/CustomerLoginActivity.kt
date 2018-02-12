@@ -15,8 +15,9 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import jvr.utcuates.Base.BaseLogin
 
-class CustomerLoginActivity : AppCompatActivity() {
+class CustomerLoginActivity : AppCompatActivity(),BaseLogin {
 
     private var mEmail: EditText? = null
     private var mPassword: EditText? = null
@@ -25,6 +26,7 @@ class CustomerLoginActivity : AppCompatActivity() {
 
     private var mAuth: FirebaseAuth? = null
     private var firebaseAuthListener: FirebaseAuth.AuthStateListener? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_customer_login)
@@ -47,29 +49,9 @@ class CustomerLoginActivity : AppCompatActivity() {
         mLogin = findViewById(R.id.login) as Button
         mRegistration = findViewById(R.id.registration) as Button
 
-        mRegistration!!.setOnClickListener {
-            val email = mEmail!!.text.toString()
-            val password = mPassword!!.text.toString()
-            mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@CustomerLoginActivity) { task ->
-                if (!task.isSuccessful) {
-                    Toast.makeText(this@CustomerLoginActivity, "Error", Toast.LENGTH_SHORT).show()
-                } else {
-                    val user_id = mAuth!!.currentUser!!.uid
-                    val current_user_db = FirebaseDatabase.getInstance().reference.child("Users").child("Customers").child(user_id)
-                    current_user_db.setValue(true)
-                }
-            }
-        }
+        registrar()
+        login()
 
-        mLogin!!.setOnClickListener {
-            val email = mEmail!!.text.toString()
-            val password = mPassword!!.text.toString()
-            mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@CustomerLoginActivity) { task ->
-                if (!task.isSuccessful) {
-                    Toast.makeText(this@CustomerLoginActivity, "Error", Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
     }
 
 
@@ -82,4 +64,42 @@ class CustomerLoginActivity : AppCompatActivity() {
         super.onStop()
         mAuth!!.removeAuthStateListener(firebaseAuthListener!!)
     }
+
+
+    override fun registrar(){
+        mRegistration!!.setOnClickListener {
+
+            if (mEmail!!.text.toString().length < 8 || mPassword!!.text.toString().length < 5  ) return@setOnClickListener;
+
+            val email = mEmail!!.text.toString() + "@utmetropolitana.edu.mx"
+            val password = mPassword!!.text.toString()
+
+
+
+            mAuth!!.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this@CustomerLoginActivity) { task ->
+                if (!task.isSuccessful) {
+                    Toast.makeText(this@CustomerLoginActivity, "Error", Toast.LENGTH_SHORT).show()
+                } else {
+                    val user_id = mAuth!!.currentUser!!.uid
+                    val current_user_db = FirebaseDatabase.getInstance().reference.child("Users").child("Customers").child(user_id)
+                    current_user_db.setValue(true)
+                }
+            }
+        }
+
+    }
+
+    override fun login (){
+        mLogin!!.setOnClickListener {
+            val email = mEmail!!.text.toString() +  "@utmetropolitana.edu.mx"
+            val password = mPassword!!.text.toString()
+            mAuth!!.signInWithEmailAndPassword(email, password).addOnCompleteListener(this@CustomerLoginActivity) { task ->
+                if (!task.isSuccessful) {
+                    Toast.makeText(this@CustomerLoginActivity, "Error", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    }
+
 }
