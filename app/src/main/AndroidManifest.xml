@@ -44,7 +44,6 @@
         <activity android:name=".CustomerLoginActivity"></activity>
         <activity android:name=".DriverMapActivity"></activity>
         <activity android:name=".CustomerMapActivity"></activity>
-        <activity android:name=".Coordenadas"></activity>
     </application>
 
 </manifest>

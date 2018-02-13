@@ -1,11 +1,3 @@
 <resources>
     <string name="app_name">UTCUATES</string>
-<<<<<<< HEAD
-=======
-    <string name="title_activity_map">Map</string>
-    <string name="access_text">Acceso</string>
-    <string name="driver_text">Conductor</string>
-    <string name="customer_text">Usuario</string>
-    <string name="welcome_text_main">¿Hoy qué eres?</string>
->>>>>>> 0320d6eb7fc263ba7d23c011a9120b0d9577013c
 </resources>
