@@ -19,7 +19,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
         <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/picture_card_driver"
@@ -136,5 +136,24 @@
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
+
+
+
+
+
+    <!--<Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Conductor"
+        android:id="@+id/driver"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Usuario"
+        android:id="@+id/customer"/>-->
+
+
+
 </LinearLayout>

@@ -66,6 +66,7 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
         mBuscar!!.setOnClickListener {
             val UTM = LatLng(20.938848, -89.617366)
             getRouteToMarker(UTM)
+
         }
 
 
@@ -117,19 +118,36 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
             mLastLocation = location
 
             val latLng = LatLng(location.latitude, location.longitude)
+<<<<<<< HEAD
 
             //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))  Cámara a Ubnicación
             //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))     Zoom frecuente y molesto
 
+=======
+            //val Usuarios =  LatLng(location.latitude, location.longitude)
+            //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))  Cámara a Ubnicación
+            //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))     Zoom frecuente y molesto
+
+
+            /*val userId2 = FirebaseAuth.getInstance().currentUser!!.uid
+            val ref2 = FirebaseDatabase.getInstance().getReference("customerRequest")
+            val geoFire2 = GeoFire(ref2)
+            geoFire2.setLocation(userId2, GeoLocation(mLastLocation.latitude, mLastLocation.longitude))
+            geoFire2.setLocation(userId2, GeoLocation(location.latitude, location.longitude))
+            mMap!!.addMarker(MarkerOptions().position(Usuarios).title("Usuario"))
+*/
+>>>>>>> 0320d6eb7fc263ba7d23c011a9120b0d9577013c
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
             val ref = FirebaseDatabase.getInstance().getReference("driversAvailable")
-
             val geoFire = GeoFire(ref)
-            geoFire.setLocation(userId, GeoLocation(location.latitude, location.longitude))
+
+
+            geoFire.setLocation(userId, GeoLocation(location.latitude, location.longitude) )
         }
 
         val UTM = LatLng(20.938848, -89.617366)
         mMap!!.addMarker(MarkerOptions().position(UTM).title("UTM"))
+
     }
 
     override fun onConnected(bundle: Bundle?) {
