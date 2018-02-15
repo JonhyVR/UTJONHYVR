@@ -94,7 +94,8 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
         mMap!!.isMyLocationEnabled = true
     }
 
-    @Synchronized protected fun buildGoogleApiClient() {
+    @Synchronized
+    protected fun buildGoogleApiClient() {
         mGoogleApiClient = GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
@@ -156,7 +157,7 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
     override fun onStop() {
 
         super.onStop()
-        if ((!isLoggingOut!!)!!) {
+        if ((!isLoggingOut!!)) {
             disconnectDriver()
         }
     }

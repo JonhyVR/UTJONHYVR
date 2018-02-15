@@ -188,7 +188,7 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
 
     override fun onStop() {
         super.onStop()
-        if ((!isLoggingOut!!)!!) {
+        if ((!isLoggingOut!!)) {
             disconnectDriver()
         }
     }
