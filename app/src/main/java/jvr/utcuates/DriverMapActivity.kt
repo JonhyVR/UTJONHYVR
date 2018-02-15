@@ -118,8 +118,23 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
 
             val latLng = LatLng(location.latitude, location.longitude)
 
+
             //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))  Cámara a Ubnicación
             //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))     Zoom frecuente y molesto
+
+
+            //val Usuarios =  LatLng(location.latitude, location.longitude)
+            //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))  Cámara a Ubnicación
+            //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))     Zoom frecuente y molesto
+
+
+            /*val userId2 = FirebaseAuth.getInstance().currentUser!!.uid
+            val ref2 = FirebaseDatabase.getInstance().getReference("customerRequest")
+            val geoFire2 = GeoFire(ref2)
+            geoFire2.setLocation(userId2, GeoLocation(mLastLocation.latitude, mLastLocation.longitude))
+            geoFire2.setLocation(userId2, GeoLocation(location.latitude, location.longitude))
+            mMap!!.addMarker(MarkerOptions().position(Usuarios).title("Usuario"))
+*/
 
             val userId = FirebaseAuth.getInstance().currentUser!!.uid
             val ref = FirebaseDatabase.getInstance().getReference("driversAvailable")
