@@ -42,8 +42,20 @@
         <uses-library android:name="com.google.android.maps" />
         <activity android:name=".DriverLoginActivity"></activity>
         <activity android:name=".CustomerLoginActivity"></activity>
-        <activity android:name=".DriverMapActivity"></activity>
-        <activity android:name=".CustomerMapActivity"></activity>
+        <activity
+            android:name=".DriverMapActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".CustomerMapActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

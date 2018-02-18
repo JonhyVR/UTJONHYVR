@@ -6,6 +6,7 @@ import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -27,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
 
-class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
+class DriverMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener, RoutingListener {
 
 
 
@@ -52,6 +53,7 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_driver_map)
+        showToolbar("College Drivers", true)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         polylines = ArrayList()
         val mapFragment = supportFragmentManager
@@ -62,14 +64,14 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
             mapFragment.getMapAsync(this)
         }
 
-        mBuscar = findViewById<View>(R.id.Buscar) as Button
+        mBuscar = findViewById(R.id.Buscar) as Button
         mBuscar!!.setOnClickListener {
             val UTM = LatLng(20.938848, -89.617366)
             getRouteToMarker(UTM)
         }
 
 
-        mLogout = findViewById<View>(R.id.logout) as Button
+        mLogout = findViewById(R.id.logout) as Button
         mLogout!!.setOnClickListener(View.OnClickListener {
             isLoggingOut = true
 
@@ -243,6 +245,13 @@ class DriverMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClien
 
     companion object {
         private val COLORS = intArrayOf(R.color.primary_dark_material_light)
+    }
+
+    fun showToolbar(title: String, upButton: Boolean) {
+        val toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setTitle(title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(upButton)
     }
 
 }

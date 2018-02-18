@@ -6,6 +6,7 @@ import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
@@ -26,7 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
-class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
+class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
 
     private var mMap: GoogleMap? = null
     internal lateinit var mGoogleApiClient: GoogleApiClient
@@ -46,6 +47,7 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_costumer_map)
+        showToolbar("College Drivers", true)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
                 .findFragmentById(R.id.map) as SupportMapFragment
@@ -55,8 +57,8 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
             mapFragment.getMapAsync(this)
         }
 
-        mLogout = findViewById<View>(R.id.logout) as Button
-        mRequest = findViewById<View>(R.id.request) as Button
+        mLogout = findViewById(R.id.logout) as Button
+        mRequest = findViewById(R.id.request) as Button
         mLogout!!.setOnClickListener(View.OnClickListener {
             isLoggingOut = true
 
@@ -160,5 +162,12 @@ class CustomerMapActivity : FragmentActivity(), OnMapReadyCallback, GoogleApiCli
         if ((!isLoggingOut!!)) {
             disconnectDriver()
         }
+    }
+
+    fun showToolbar(title: String, upButton: Boolean) {
+        val toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setTitle(title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(upButton)
     }
 }

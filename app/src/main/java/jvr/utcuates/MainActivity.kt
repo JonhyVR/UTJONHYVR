@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        showToolbar("College Drivers", false)
 
         mDriver = findViewById(R.id.driver) as Button
         mCustomer = findViewById(R.id.customer) as Button
@@ -30,5 +31,12 @@ class MainActivity : AppCompatActivity() {
             finish()
             return@OnClickListener
         })
+    }
+
+    fun showToolbar(title: String, upButton: Boolean) {
+        val toolbar = findViewById(R.id.toolbar) as android.support.v7.widget.Toolbar
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setTitle(title)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(upButton)
     }
 }
