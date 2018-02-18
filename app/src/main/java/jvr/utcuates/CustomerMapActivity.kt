@@ -5,26 +5,22 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
-import android.support.v4.app.FragmentActivity
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-
 import com.firebase.geofire.GeoFire
 import com.firebase.geofire.GeoLocation
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, com.google.android.gms.location.LocationListener {
@@ -36,6 +32,7 @@ class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCl
 
     private var mLogout: Button? = null
     private var mRequest: Button? = null
+
 
     private val mapFragment: SupportMapFragment? = null
     private var isLoggingOut: Boolean? = false
@@ -57,6 +54,8 @@ class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCl
             mapFragment.getMapAsync(this)
         }
 
+        var mPrueba: Button? = null
+        mPrueba = findViewById(R.id.Prueba) as Button
         mLogout = findViewById(R.id.logout) as Button
         mRequest = findViewById(R.id.request) as Button
         mLogout!!.setOnClickListener(View.OnClickListener {
@@ -83,6 +82,12 @@ class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCl
 
             mRequest!!.text = "Buscando conductor...."
         }
+        mPrueba!!.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this@CustomerMapActivity, Coordenadas::class.java)
+            startActivity(intent)
+            finish()
+            return@OnClickListener
+        })
     }
 
 
@@ -112,8 +117,8 @@ class CustomerMapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleApiCl
 
             val latLng = LatLng(location.latitude, location.longitude)
 
-            mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
-            mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
+            //mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+            //mMap!!.animateCamera(CameraUpdateFactory.zoomTo(11f))
         }
     }
 
